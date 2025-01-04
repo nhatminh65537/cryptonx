@@ -1,5 +1,6 @@
 venv_folder="venv-test"
 sage_version="9.8"
+python="python"
 
 if [ "$1" = "-h" ]; then
     echo "Usage: sh ./build-venv.sh [-f]"
@@ -19,17 +20,32 @@ fi
 
 if ! [ -x "$(command -v python)" ]; then
     if ! [ -x "$(command -v python3)" ]; then
-        echo "Python is not installed. Please install Python 3.6 or higher."
+        echo "Python is not installed. Please install Python 3.6 or higher:"
+        echo "  sudo apt-get install python3"
         exit 1
     else
-        python=python3
+        python="python3"
     fi
 fi
 
-python -m venv $venv_folder
-. $venv_folder/bin/activate
-pip list
+if ! [ -x "$(command -v $python -m venv)" ]; then
+    echo "Python venv is not installed. Please install python3-venv:"
+    echo "  sudo apt-get install python3-venv"
+    exit 1
+fi
 
+echo "Creating virtual environment $venv_folder"
+$python -m venv $venv_folder
+
+echo "Activating virtual environment"
+. $venv_folder/bin/activate
+# pip list
+
+echo "Installing Python packages"
 pip install -r requirements.txt
+
+echo "Installing SageMath $sage_version"
 sh install-sage.sh $sage_version
+
+echo "Upgrading pip"
 pip install --upgrade pip
