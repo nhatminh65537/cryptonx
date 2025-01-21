@@ -31,4 +31,5 @@ source $(python3 -m cryptonx path-activate)
 #### Lattice-based Cryptanalysis Toolkit
 
 link [here](https://github.com/josephsurin/lattice-based-cryptanalysis)  
-
+> This tools will auto install where `build-venv`  
+> You can check them in `install-tools.sh`
