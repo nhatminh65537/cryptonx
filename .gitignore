@@ -1,2 +1,5 @@
 Trash
 venv
+cryptonx-venv
+__pycache__
+github-tools

@@ -1,10 +1,11 @@
 ## Requirement
 Some tool need to have:
-> python >= 3.6
+> python >= 3.6  
+> ubuntu == 22.04
 
 ## Build
 
-If you want reconfig build detail, change directly in build-venv.sh 
+If you want reconfig build detail, change directly in build-venv.sh  
 After that you can run this command to build virtual environment for this project.
 
 ```shell

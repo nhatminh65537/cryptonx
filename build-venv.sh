@@ -1,4 +1,4 @@
-venv_folder="venv-test"
+venv_folder="cryptonx-venv"
 sage_version="9.8"
 python="python"
 
@@ -34,12 +34,36 @@ if ! [ -x "$(command -v $python -m venv)" ]; then
     exit 1
 fi
 
+echo "Installing system packages (enter your password if prompted)"
+sudo apt-get update
+sudo apt-get install bc binutils bzip2 ca-certificates cliquer cmake curl \
+        ecl eclib-tools fflas-ffpack flex g++ gap gcc gengetopt gfan gfortran \
+        glpk-utils gmp-ecm lcalc libatomic-ops-dev libboost-dev \
+        libbraiding-dev libbrial-dev libbrial-groebner-dev libbz2-dev \
+        libcdd-dev libcdd-tools libcliquer-dev libcurl4-openssl-dev libec-dev \
+        libecm-dev libffi-dev libflint-dev libfplll-dev libfreetype-dev \
+        libgap-dev libgc-dev libgd-dev libgf2x-dev libgiac-dev libgivaro-dev \
+        libglpk-dev libgmp-dev libgsl-dev libhomfly-dev libiml-dev \
+        liblfunction-dev liblinbox-dev liblrcalc-dev liblzma-dev libm4ri-dev \
+        libm4rie-dev libmpc-dev libmpfi-dev libmpfr-dev libncurses5-dev \
+        libntl-dev libopenblas-dev libpari-dev libplanarity-dev libppl-dev \
+        libprimecount-dev libprimesieve-dev libpython3-dev libqhull-dev \
+        libreadline-dev librw-dev libsingular4-dev libsqlite3-dev libssl-dev \
+        libsuitesparse-dev libsymmetrica2-dev libz-dev libzmq3-dev m4 make \
+        maxima maxima-sage meson nauty ninja-build openssl palp pari-doc \
+        pari-elldata pari-galdata pari-galpol pari-gp2c pari-seadata patch \
+        patchelf perl pkg-config planarity ppl-dev python3 python3-setuptools \
+        python3-venv qhull-bin singular singular-doc sqlite3 sympow tachyon \
+        tar texinfo tox xcas xz-utils
+
 echo "Creating virtual environment $venv_folder"
 $python -m venv $venv_folder
 
 echo "Activating virtual environment"
 . $venv_folder/bin/activate
-# pip list
+
+echo "Check activated virtual environment"
+pip list
 
 echo "Installing Python packages"
 pip install -r requirements.txt
@@ -49,3 +73,6 @@ sh install-sage.sh $sage_version
 
 echo "Upgrading pip"
 pip install --upgrade pip
+
+echo "Installing github_tools"
+sh install-tools.sh
