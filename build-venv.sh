@@ -76,3 +76,24 @@ pip install --upgrade pip
 
 echo "Installing github_tools"
 sh install-tools.sh
+
+shell_type=$(basename "$SHELL")
+
+case "$shell_type" in
+    bash)
+        init_file="$HOME/.bashrc"
+        ;;
+    zsh)
+        init_file="$HOME/.zshrc"
+        ;;
+    ksh)
+        init_file="$HOME/.kshrc"
+        ;;
+    *)
+        echo "Unsupported shell type: $shell_type"
+        exit 1
+        ;;
+esac
+
+echo "Adding alias to $init_file"
+echo "alias cryptonx='$python -m cryptonx'" >> "$init_file"

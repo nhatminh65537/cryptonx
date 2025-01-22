@@ -22,9 +22,10 @@ Please check [here](build-venv.md).
 
 Run directly activare script or run:
 ```bash
-source $(python3 -m cryptonx path-activate)
+source $(python3 -m cryptonx get activate_path)
 ```
-> Sure that `cryptonx` can be found.
+> Sure that `cryptonx` can be found  
+> You can add package folder to `PYTHONPATH`
 
 ## More tools
 
