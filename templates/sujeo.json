@@ -1,0 +1,34 @@
+{
+    "RequestInfo": {
+        "Headers": {},
+        "Cookies": {
+            "session": ""
+        }
+    },
+    "FlagText": "flag{this_is_a_fake_flag}",
+    "Challenges": [
+        {
+            "Name": "",
+            "Done": false,
+            "Files": [
+                {
+                    "Name": "",
+                    "URL": "",
+                    "Unzip": false
+                }
+            ],
+            "SetupSolve": {
+                "File": "solv.py",
+                "Connect": [
+                    {
+                        "Host": "localhost",
+                        "Port": 1337
+                    }
+                ],
+                "ImportAll": ["sage.all"],
+                "Import": [],
+                "Read": "output.txt"
+            }
+        }
+    ]
+}
